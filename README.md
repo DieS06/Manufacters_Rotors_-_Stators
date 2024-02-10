@@ -6,7 +6,12 @@ You have been hired to develop a data acquisition system in a factory. This comp
 The impregnation process shows the use of 3 different types of sensors MQ2, thermocouple, laser; In addition to making physical measurements of the magnetic field, voltage, and resistance of the piece. As additional point, the system is required to carry information stored in a database where these variables are stored, sensor type, voltage, resistance of the piece. Furthermore, in this process the plant engineer determines that if the resistance is greater than 5ohm the piece will be bad, otherwise the piece will be good.
 
  Develop this system with a tree type structure
+ 
  Develop methods of inserting, searching, deleting, keeping count of pieces
+ 
  Determine the number of boxes produced
+ 
  Develop a main menu for the operator to monitor system options
+ 
  Make the connection to the database from C++ this will be taken as an extra point in the project
+ 
