@@ -133,9 +133,8 @@
     <ClCompile Include="Impregnate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tree.h" />
-    <ClInclude Include="Cook.h" />
-    <ClInclude Include="Impregnate.h" />
+    <ClInclude Include="Cook_Tree.h" />
+    <ClInclude Include="Impregnate_Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

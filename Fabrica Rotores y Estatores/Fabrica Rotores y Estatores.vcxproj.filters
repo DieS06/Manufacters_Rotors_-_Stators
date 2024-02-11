@@ -26,13 +26,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cook.h">
+    <ClInclude Include="Impregnate_Tree.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Impregnate.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree.h">
+    <ClInclude Include="Cook_Tree.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
