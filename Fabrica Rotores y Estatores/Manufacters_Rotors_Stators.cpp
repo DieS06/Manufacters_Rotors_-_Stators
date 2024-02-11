@@ -20,6 +20,8 @@ int main()
     return 0;
 }
 
+//--Las piezas se empacan en cajas de 5 unds.--
+
 void menu() {
 
 };

@@ -1,18 +1,9 @@
 /*
-* Variables:
-* temperatura
-* humedad
-* presión
-* tipo de pieza{ tipo A, tipo B}
-* 
 * Condiciones:
 * Si la temperatura es mayor de 30.8, la pieza esta dañada, de lo contrario esta lista para exportar.
 * 
 * Constantes:
 * daño: 30.8
-* 
-* --Las piezas se empacan en cajas de 5 unds.--
-* 
 */
 #ifndef COOK_H
 #define COOK_H
@@ -46,7 +37,7 @@ public:
 	~Cook();
 
 	//Create the tree structure for Cook class. 
-	Nodo* treeCook = nullptr;
+	Node* treeCook = nullptr;
 
 	/*INSERT*/
 
@@ -55,9 +46,7 @@ public:
 	/*DELETE*/
 
 	/*COUNT*/
+
 };
-
-
-
 #endif // COOK_H_INCLUDED
 

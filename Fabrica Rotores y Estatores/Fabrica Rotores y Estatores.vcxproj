@@ -24,6 +24,7 @@
     <ProjectGuid>{bbcaf92d-4add-4d0e-9d4f-c43c7f9fcf00}</ProjectGuid>
     <RootNamespace>FabricaRotoresyEstatores</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Manufacters_Rotors_Stators</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -132,7 +133,7 @@
     <ClCompile Include="Impregnate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arbol.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Cook.h" />
     <ClInclude Include="Impregnate.h" />
   </ItemGroup>

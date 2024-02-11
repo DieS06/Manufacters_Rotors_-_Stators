@@ -32,7 +32,7 @@
     <ClInclude Include="Impregnate.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Arbol.h">
+    <ClInclude Include="Tree.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

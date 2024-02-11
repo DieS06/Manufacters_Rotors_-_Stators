@@ -1,10 +1,4 @@
 /*
-* Variables:
-* tipo de sensor { MQ2, termocupla, laser}
-* campo mágnetico
-* voltaje
-* resistencia de la pieza
-* 
 * Condiciones:
 * Si la resistencia es mayor a 5ohm esta dañada, de lo contrario esta bien.
 * 
@@ -33,6 +27,21 @@ public:
 		Termocupla,
 		laser
 	};
-};
 
+	//Constructors
+	Impregnate();
+	Impregnate(float resistance, float voltage, float magneticField, enum sensorType);
+
+	// Destructor
+	~Impregnate();
+
+	/*INSERT*/
+
+	/*SEARCH*/
+
+	/*DELETE*/
+
+	/*COUNT*/
+
+};
 #endif //IMPREGNATE_H_INCLUDED
