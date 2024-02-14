@@ -32,14 +32,40 @@ typedef struct Cook {
 Cook_Node* cook_tree = nullptr;
 
 /*CREATE COOK NODE*/
-Cook_Node *Create_Cook_Node(Cook* cook);
+Cook_Node* Create_Cook_Node(Cook cook) {
+	Cook_Node* newCook = new Cook_Node();
+	newCook->cook = cook;
+	newCook->right = NULL;
+	newCook->left = NULL;
+
+	return newCook;
+}
+
 /*INSERT COOK NODE*/
-void insert_Cook_Node(Cook_Node*& tree);
+void insert_Cook_Node(Cook_Node*& tree, Cook cook) {
+	float root;
+	if (tree == NULL) {
+
+		Cook_Node* newCook = Create_Cook_Node(cook);
+		tree = newCook;
+	}
+	else {
+
+		root = tree->cook.temperature;
+		if (root < 30.8) {
+
+			insert_Cook_Node(tree->left, cook);
+		}
+		else {
+			insert_Cook_Node(tree->right, cook);
+		}
+	}
+}
+
 /*SEARCH COOK NODE*/
 bool search_Cook_Node();
+
 /*DELETE COOK NODE*/
 void destroy_Cook_Node(Cook_Node *cook);
-
-/*COUNT COOK NODE*/
 
 #endif //COOK_TREE_H_INCLUDED
