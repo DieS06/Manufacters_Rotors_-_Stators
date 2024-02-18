@@ -63,9 +63,29 @@ void insert_Cook_Node(Cook_Node*& tree, Cook cook) {
 }
 
 /*SEARCH COOK NODE*/
-bool search_Cook_Node();
+bool search_Cook_Node(Cook_Node* root, float targetTemperature) {
+    if (root == nullptr) {
+        return false;
+    }
+    if (root->cook.temperature == targetTemperature) {
+        return true;
+    }
+    if (targetTemperature < root->cook.temperature) {
+        return search_Cook_Node(root->left, targetTemperature);
+    } else {
+        return search_Cook_Node(root->right, targetTemperature);
+    }
+}
+
 
 /*DELETE COOK NODE*/
-void destroy_Cook_Node(Cook_Node *cook);
+
+void destroy_Cook_Node(Cook_Node* root) {
+    if (root != nullptr) {
+        destroy_Cook_Node(root->left);
+        destroy_Cook_Node(root->right);
+        delete root;
+    }
+}
 
 #endif //COOK_TREE_H_INCLUDED
