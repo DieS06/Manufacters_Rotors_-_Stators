@@ -18,21 +18,12 @@
     <ClCompile Include="Manufacters_Rotors_Stators.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Impregnate.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Cook.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Impregnate_Tree.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Cook_Tree.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Impregnate.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

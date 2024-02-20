@@ -1,28 +1,13 @@
-/*Si la resistencia de la pieza se mayor a 5 ohms, la pieza estara mala, de lo contrario esta buena.*/
-
 #ifndef IMPREGNATE_TREE_H_INCLUDED
 #define IMPREGNATE_TREE_H_INCLUDED
 
 #include <string>
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 
 using namespace std;
-enum class partType {
-	MQ2,
-	TERMOCUPLA,
-	LASER
-};
 
-typedef struct Impregnate_Node {
-	Impregnate impregnate;
-	Impregnate_Node* right;
-	Impregnate_Node* left;
-}Impregnate_Node;
+struct Impregnate {
 
-typedef struct Impregnate {
-	int length;
 	/*Tree variable Voltage*/
 	float magneticfield;
 	float voltage;
@@ -32,7 +17,18 @@ typedef struct Impregnate {
 		TERMOCUPLA,
 		LASER
 	};
-}Impregnate;
+
+	/*Constructor*/
+	Impregnate();
+	Impregnate(float resistance, float magneticfield, float voltage, partType type);
+};
+
+typedef struct Impregnate_Node {
+	int length;
+	Impregnate impregnate;
+	Impregnate_Node* right = nullptr;
+	Impregnate_Node* left = nullptr;
+}Impregnate_Node;
 
 Impregnate_Node* impregnate_tree = nullptr;
 
@@ -46,61 +42,66 @@ Impregnate_Node* Create_Impregnate_Node(Impregnate impregnate) {
 	return newImpregnate;
 }
 
-/*INSERT COOK NODE*/
-void insert_Impregnate_Node(Impregnate_Node*& tree, Impregnate impregnate) {
+/*INSERT IMPREGNATE NODE*/
+void Insert_Impregnate_Node(Impregnate_Node*& tree, Impregnate impregnate) {
 	float root;
-
-	Impregnate Nodo1;
-	Nodo1.length = 0;  // Establecemos la longitud en 0
-	Nodo1.magneticfield = 0.0f;  // Establecemos el campo magnético en 0.0
-	Nodo1.voltage = 0.0f;  // Establecemos el voltaje en 0.0
-	Nodo1.resistance = 5.0f;  // Establecemos la resistencia en 0.0
-
-
-	Impregnate_Node* newImpregnate = Create_Impregnate_Node(Nodo1);
-	tree = newImpregnate;
-
-
-		root = tree->impregnate.resistance;
-		if (root < impregnate.resistance) {
-
-			insert_Impregnate_Node(tree->left, impregnate);
-		}
-		else {
-			insert_Impregnate_Node(tree->right, impregnate);
-		}
-	}
-
-
-/*SEARCH COOK NODE*/
-bool Search_Node_Tree(Impregnate_Node* tree, float magneticF, float volt, float ohm ) { //Impregnate::partType type
 	if (tree == NULL) {
-		return false;
-	}
-	else if (magneticF == tree->impregnate.magneticfield && volt == tree->impregnate.voltage && ohm == tree->impregnate.resistance) { //Si el nodo es igual al nodo que se busca
-		return true;
-	}
-	else if (ohm < tree->impregnate.resistance) {
-		return Search_Node_Tree(tree->left, magneticF, volt, ohm);
+		Impregnate_Node* newImpregnate = Create_Impregnate_Node(impregnate);
+		tree = newImpregnate;
+		//impregnate.length++;
 	}
 	else {
-		return Search_Node_Tree(tree->right, magneticF, volt, ohm);
-	}
+		root = tree->impregnate.resistance;
+		if (root < 5) {
 
+			Insert_Impregnate_Node(tree->left, impregnate);
+			tree->length++;
+		}
+		else {
+			Insert_Impregnate_Node(tree->right, impregnate);
+		}
+	}
 }
 
-/*DELETE COOK NODE*/
-void destroy_Impregnate_Node(Impregnate_Node*& tree,Impregnate* impregnate, float magneticF, float volt, float ohm) {
-
-	bool nodoElimated = Search_Node_Tree(tree, magneticF, volt, ohm);
-
-	if (nodoElimated) {
-	
-		free (impregnate);
-
+/*SEARCH IMPREGNATE NODE*/
+bool Search_Impregnate_Node(Impregnate_Node* root, float ohm)
+	{
+		if (root == NULL) {
+			return false;
+		}
+		else if (ohm == root->impregnate.resistance) { //Si el nodo es igual al nodo que se busca
+			return true;
+		}
+		else if (ohm < root->impregnate.resistance) {
+			return Search_Impregnate_Node(root->left, ohm);
+		}
+		else {
+			return Search_Impregnate_Node(root->right, ohm);
+		}
 	}
 
-
+/*DELETE IMPREGNATE NODE*/
+void Destroy_Impregnate_Node(Impregnate_Node* impreg) {
+	if (impreg != nullptr) {
+		Destroy_Impregnate_Node(impreg->left);
+		Destroy_Impregnate_Node(impreg->right);
+		delete impreg;
+	}
 }
 
-#endif //COOK_TREE_H_INCLUDED
+/*SHOW TREE*/
+void Show_Impregnate_Tree(Impregnate_Node*& impregnate_tree, int cont) {
+	if (impregnate_tree == nullptr) {
+		return;
+	}
+	else {
+		Show_Impregnate_Tree(impregnate_tree->right, cont + 1);
+		for (int i = 0; i < cont; i++) {
+			std::cout << "  ";
+		}
+		cout << impregnate_tree->impregnate.resistance << endl;
+		Show_Impregnate_Tree(impregnate_tree->left, cont + 1);
+	}
+};
+
+#endif //IMPREGNATE_TREE_H_INCLUDED

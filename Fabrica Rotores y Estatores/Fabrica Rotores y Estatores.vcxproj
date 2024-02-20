@@ -128,13 +128,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cook.cpp" />
     <ClCompile Include="Manufacters_Rotors_Stators.cpp" />
-    <ClCompile Include="Impregnate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cook_Tree.h" />
-    <ClInclude Include="Impregnate.h" />
     <ClInclude Include="Impregnate_Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
