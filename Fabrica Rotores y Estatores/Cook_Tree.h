@@ -3,8 +3,6 @@
 
 #include <string>
 #include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
 
 using namespace std;
 
@@ -30,7 +28,7 @@ typedef struct Cook_Node {
 	Cook_Node* left = nullptr;
 }Cook_Node;
 
-Cook_Node* cook_tree = nullptr;
+//Cook_Node* cook_tree = nullptr;
 
 /*CREATE COOK NODE*/
 Cook_Node* Create_Cook_Node(Cook cook) {
@@ -43,21 +41,21 @@ Cook_Node* Create_Cook_Node(Cook cook) {
 }
 
 /*INSERT COOK NODE*/
-void Insert_Cook_Node(Cook_Node*& tree, Cook cook) {
+void Insert_Cook_Node(Cook_Node*& cook_tree, Cook cook) {
     float root;
-    if (tree == NULL) {
+    if (cook_tree == NULL) {
         Cook_Node* newCook = Create_Cook_Node(cook);
-        tree = newCook;
+        cook_tree = newCook;
     }
     else {
-        root = tree->cook.temperature;
-        if (root < 30.8) {
+        root = cook_tree->cook.temperature;
+        if (root < 30.8f) {
 
-            Insert_Cook_Node(tree->left, cook);
-            tree->length++;
+            Insert_Cook_Node(cook_tree->left, cook);
+            cook_tree->length++;
         }
         else {
-            Insert_Cook_Node(tree->right, cook);
+            Insert_Cook_Node(cook_tree->right, cook);
         }
     }
 }
@@ -79,11 +77,16 @@ bool Search_Cook_Node(Cook_Node* root, float targetTemperature) {
 }
 
 /*DELETE COOK NODE*/
-void Destroy_Cook_Node(Cook_Node* cook) {
-    if (cook != nullptr) {
-        Destroy_Cook_Node(cook->left);
-        Destroy_Cook_Node(cook->right);
+void Destroy_Cook_Node(Cook_Node*& cook_tree, Cook* cook) {
+    float temp = cook->temperature;
+    bool eliminateNode = Search_Cook_Node(cook_tree, temp);
+    if (eliminateNode == true) {
+        Destroy_Cook_Node(cook_tree->left, cook);
+        Destroy_Cook_Node(cook_tree->right, cook);
         delete cook;
+    }
+    else {
+        cout << "The specified node doesn't exist." <<endl;
     }
 }
 

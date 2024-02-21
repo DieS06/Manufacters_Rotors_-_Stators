@@ -7,7 +7,6 @@
 using namespace std;
 
 struct Impregnate {
-
 	/*Tree variable Voltage*/
 	float magneticfield;
 	float voltage;
@@ -30,7 +29,7 @@ typedef struct Impregnate_Node {
 	Impregnate_Node* left = nullptr;
 }Impregnate_Node;
 
-Impregnate_Node* impregnate_tree = nullptr;
+//Impregnate_Node* impregnate_tree = nullptr;
 
 /*CREATE IMPREGNATE NODE*/
 Impregnate_Node* Create_Impregnate_Node(Impregnate impregnate) {
@@ -43,22 +42,25 @@ Impregnate_Node* Create_Impregnate_Node(Impregnate impregnate) {
 }
 
 /*INSERT IMPREGNATE NODE*/
-void Insert_Impregnate_Node(Impregnate_Node*& tree, Impregnate impregnate) {
-	float root;
-	if (tree == NULL) {
-		Impregnate_Node* newImpregnate = Create_Impregnate_Node(impregnate);
-		tree = newImpregnate;
-		//impregnate.length++;
-	}
-	else {
-		root = tree->impregnate.resistance;
-		if (root < 5) {
+void Insert_Impregnate_Node(Impregnate_Node*& impregnate_tree, Impregnate impregnate) {
+float root;
+	if (impregnate_tree == NULL) {
+		//Impregnate Nodo1;
+		//Nodo1.magneticfield = 0.0f;  // Establecemos el campo magnético en 0.0
+		//Nodo1.voltage = 0.0f;  // Establecemos el voltaje en 0.0
+		//Nodo1.resistance = 0.0f;  // Establecemos la resistencia en 0.0
 
-			Insert_Impregnate_Node(tree->left, impregnate);
-			tree->length++;
+		Impregnate_Node* newImpregnate = Create_Impregnate_Node(impregnate);
+		impregnate_tree = newImpregnate;
+	}else {
+		root = impregnate_tree->impregnate.resistance;
+		if (root < 5.0f) {
+
+			Insert_Impregnate_Node(impregnate_tree->left, impregnate);
+			impregnate_tree->length++;
 		}
 		else {
-			Insert_Impregnate_Node(tree->right, impregnate);
+			Insert_Impregnate_Node(impregnate_tree->right, impregnate);
 		}
 	}
 }
@@ -81,11 +83,17 @@ bool Search_Impregnate_Node(Impregnate_Node* root, float ohm)
 	}
 
 /*DELETE IMPREGNATE NODE*/
-void Destroy_Impregnate_Node(Impregnate_Node* impreg) {
-	if (impreg != nullptr) {
-		Destroy_Impregnate_Node(impreg->left);
-		Destroy_Impregnate_Node(impreg->right);
-		delete impreg;
+void Destroy_Impregnate_Node(Impregnate_Node*& impregnate_tree, Impregnate* impregnate) {
+	float ohm = impregnate->resistance;
+	bool eliminateNode = Search_Impregnate_Node(impregnate_tree, ohm);
+
+	if (eliminateNode == true) {
+		Destroy_Impregnate_Node(impregnate_tree->left, impregnate);
+		Destroy_Impregnate_Node(impregnate_tree->right, impregnate);
+		delete impregnate;
+	}
+	else {
+		cout << "The specified node doesn't exist." << endl;
 	}
 }
 

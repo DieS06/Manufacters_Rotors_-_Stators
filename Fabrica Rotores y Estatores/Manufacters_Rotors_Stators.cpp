@@ -23,6 +23,9 @@ Impregnate::Impregnate(float resistance, float magneticField, float voltage, Imp
 Cook::Cook() {};
 Cook::Cook(float tempreature, float humidity, float pressure, Cook::partType type) { };
 
+Impregnate_Node* impregnate_tree = nullptr;
+Cook_Node* cook_tree = nullptr;
+
 bool endsWithZeroOrFive(int n) {
     return (n % 10 == 0) || (n % 10 == 5);
 }
@@ -67,8 +70,8 @@ void CountBoxes(Cook_Node* cook_tree, Impregnate_Node* impregnate_tree) {
 void menu() {
     int opt, option, count = 0;
     int counter = 0;
-    float temp, hum, press;
-    float magn, volt, resist;
+    float temp = 0.0, hum = 0.0, press = 0.0;
+    float magn = 0.0, volt = 0.0, resist= 0.0;
 
     bool foundImpregnate = false, foundCook = false;
 
@@ -104,18 +107,18 @@ void menu() {
                         cin >> hum;
                         cout << "Insert the pression of the part:\n";
                         cin >> press;
-                        cout << "Insert the number of the type of part:\n";
+                        cout << "Insert the number for the type of part:\n";
                         cout << "0: Type_A\n";
                         cout << "1 : Type_B\n";
                         cin >> counter;
 
                         if (counter == 0) {
-                            Cook new_cook(temp, hum, press, Cook::partType::Type_A);
-                            Insert_Cook_Node(cook_tree, new_cook);
+                            Cook one_cook(temp, hum, press, Cook::partType::Type_A);
+                            Insert_Cook_Node(cook_tree, one_cook);
                         }
                         else if (counter == 1) {
-                            Cook new_cook(temp, hum, press, Cook::partType::Type_B);
-                            Insert_Cook_Node(cook_tree, new_cook);
+                            Cook one_cook(temp, hum, press, Cook::partType::Type_B);
+                            Insert_Cook_Node(cook_tree, one_cook);
                         }
                         else {
                             cout << "Incorrect value inserted!\n";
@@ -220,12 +223,14 @@ void menu() {
                         cout << "Deleting Cook Node..." << endl;
                         cout << "Enter the temperature to delete:\n";
                         cin >> temp;
+                        //Destroy_Cook_Node(cook_tree, );
                         break;
 
                     case 2:
                         cout << "Deleting Impregnate Node..." << endl;
                         cout << "Enter the resistance to delete:\n";
-                        cin >> resist;                   
+                        cin >> resist;
+                        //Destroy_Cook_Node(impregnate_tree, );
                         break;
                     }
                 } while (option != 0);
